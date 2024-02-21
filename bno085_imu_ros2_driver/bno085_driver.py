@@ -11,7 +11,7 @@ from adafruit_bno08x.i2c import BNO08X_I2C
 
 class IMUPublisher(Node):
     def __init__(self):
-        super().__init__('imu_publisher')
+        super().__init__('imu_driver')
         self.declare_parameters(
             namespace='',
             parameters=[
@@ -23,7 +23,6 @@ class IMUPublisher(Node):
         )
 
         self.imu_publisher = self.create_publisher(Imu, '/sensor/imu/data', 10)
-        self.magnetic_field_publisher = self.create_publisher(MagneticField, '/sensor/imu/mag', 10)
 
         # Initialize sensor
         self.sensor = self.initialize_sensor()
@@ -34,8 +33,10 @@ class IMUPublisher(Node):
 
         # Setup timer for magnetometer data publishing if enabled
         if self.get_parameter('enable_magnetometer').value:
+            self.magnetic_field_publisher = self.create_publisher(MagneticField, '/sensor/magnetic_field', 10)
             magnetometer_rate = self.get_parameter('magnetometer_rate').value
             self.create_timer(1.0 / magnetometer_rate, self.publish_magnetic_field_data)
+        print("[IMU Driver] IMU Driver node initialized")
 
     def initialize_sensor(self):
         i2c = busio.I2C(board.SCL, board.SDA)
@@ -45,6 +46,7 @@ class IMUPublisher(Node):
         bno.enable_feature(BNO_REPORT_ROTATION_VECTOR)
         if self.get_parameter('enable_magnetometer').value:
             bno.enable_feature(BNO_REPORT_MAGNETOMETER)
+        print("[IMU Driver] BNO085 IMU sensor initialized")
         return bno
 
     def publish_imu_data(self):

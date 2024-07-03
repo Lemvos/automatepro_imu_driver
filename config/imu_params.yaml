@@ -1,6 +1,6 @@
 imu_driver:
   ros__parameters:
     enable_imu: true
-    enable_magnetometer: flase
+    enable_magnetometer: false
     imu_rate: 100
     magnetometer_rate: 100

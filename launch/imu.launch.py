@@ -13,7 +13,7 @@ def generate_launch_description():
     return LaunchDescription([
         Node(
             package='bno085_imu_ros2_driver',  
-            executable='imu_publisher',  
+            executable='imu_driver',  
             name='imu_driver',
             output='screen',
             parameters=[config]

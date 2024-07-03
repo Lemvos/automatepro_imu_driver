@@ -1,6 +1,6 @@
-from setuptools import find_packages, setup
 import os
-import glob
+from glob import glob
+from setuptools import find_packages, setup
 
 package_name = 'bno085_imu_ros2_driver'
 
@@ -12,19 +12,22 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
-                (os.path.join('share', package_name, 'launch'), glob('launch/*.py')), 
+        (os.path.join('share', package_name, 'launch'), glob('launch/*.py')), 
         (os.path.join('share', package_name, 'config'), glob('config/*.yaml')),
     ],
-    install_requires=['setuptools'],
+    install_requires=[
+        'setuptools',
+        'adafruit_bno08x'
+        ],
     zip_safe=True,
-    maintainer='ros',
+    maintainer='Balachandra',
     maintainer_email='balachandra.bhat@lemvos.com',
     description='TODO: Package description',
     license='Apache-2.0',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'imu_publisher = bno085_imu_ros2_driver.imu_publisher:main',
+            'imu_driver = bno085_imu_ros2_driver.bno085_driver:main',
         ],
     },
 )

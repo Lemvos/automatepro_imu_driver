@@ -16,6 +16,7 @@ class IMUPublisher(Node):
         self.declare_parameters(
             namespace='',
             parameters=[
+                ('i2c_address', 0x4b),
                 ('enable_imu', True),
                 ('enable_magnetometer', False),
                 ('imu_rate', 100),
@@ -41,8 +42,9 @@ class IMUPublisher(Node):
         self.logger.info("IMU Driver node initialized")
 
     def initialize_sensor(self):
+        address = self.get_parameter('i2c_address').value
         i2c = busio.I2C(board.SCL, board.SDA)
-        bno = BNO08X_I2C(i2c, address=0x4a)  # Adjust address based on your hardware
+        bno = BNO08X_I2C(i2c, address=address)
         bno.enable_feature(BNO_REPORT_ACCELEROMETER)
         bno.enable_feature(BNO_REPORT_GYROSCOPE)
         bno.enable_feature(BNO_REPORT_ROTATION_VECTOR)

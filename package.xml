@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>bno085_imu_ros2_driver</name>
+  <name>automatepro_imu_driver</name>
   <version>0.1.0</version>
-  <description>ROS2 Driver for BNO085 9-axis IMU</description>
+  <description>ROS2 Driver for AutomatePro 9-axis IMU</description>
   <maintainer email="balachandra.bhat@lemvos.com">ros</maintainer>
   <license>Apache-2.0</license>
 

@@ -2,7 +2,7 @@ import os
 from glob import glob
 from setuptools import find_packages, setup
 
-package_name = 'bno085_imu_ros2_driver'
+package_name = 'automatepro_imu_driver'
 
 setup(
     name=package_name,
@@ -27,7 +27,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'imu_driver = bno085_imu_ros2_driver.bno085_driver:main',
+            'imu_driver = automatepro_imu_driver.imu_driver:main',
         ],
     },
 )

@@ -36,7 +36,7 @@ class IMUPublisher(Node):
         # Setup timer for magnetometer data publishing if enabled
         if self.get_parameter('enable_magnetometer').value:
             self.logger.info("Enabling Magnetometer")
-            self.magnetic_field_publisher = self.create_publisher(MagneticField, '/sensor/magnetic_field', 10)
+            self.magnetic_field_publisher = self.create_publisher(MagneticField, '/sensor/imu/magnetic_field', 10)
             magnetometer_rate = self.get_parameter('magnetometer_rate').value
             self.create_timer(1.0 / magnetometer_rate, self.publish_magnetic_field_data)
         self.logger.info("IMU Driver node initialized")

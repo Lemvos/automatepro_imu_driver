@@ -1,4 +1,4 @@
-imu_driver:
+automatepro_imu_driver:
   ros__parameters:
     enable_imu: true
     enable_magnetometer: false
